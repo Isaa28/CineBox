@@ -8,9 +8,7 @@ use App\Models\Movie;
 
 class MovieController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
         $movies = Movie::all();  
