@@ -34,20 +34,17 @@ class MovieController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $movie = Movie::findOrFail($id);
+        return view('movies.edit', compact('movie'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $movie = Movie::findOrFail($id);
+        $movie->update($request->all());
+        return redirect()->route('movies.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //
