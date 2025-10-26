@@ -15,20 +15,15 @@ class MovieController extends Controller
         return view('movies.index', compact('movies'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('movies.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        Movie::create($request->all());
+        return redirect()->route('movies.index');
     }
 
     /**
