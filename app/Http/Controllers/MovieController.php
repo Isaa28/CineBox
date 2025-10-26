@@ -47,6 +47,8 @@ class MovieController extends Controller
 
     public function destroy(string $id)
     {
-        //
+        $movie = Movie::findOrFail($id);
+        $movie->delete();
+        return redirect()->back();
     }
 }
