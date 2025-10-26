@@ -10,6 +10,15 @@
     <div>
         <h1>Filmes</h1>
         <a href="{{route('movies.create')}}">Cadastrar filme</a>
+
+        @if (session()->has('sucesso'))
+            <p>{{ session()->get('sucesso')}}</p>
+        @elseif (session()->has('erro'))
+            <p>{{ session()->get('erro')}}</p>
+        @else
+            <p> </p>
+        @endif
+
         <hr>
     </div>
     <table>

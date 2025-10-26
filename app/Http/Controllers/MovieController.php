@@ -22,8 +22,11 @@ class MovieController extends Controller
 
     public function store(Request $request)
     {
-        Movie::create($request->all());
-        return redirect()->route('movies.index');
+        if(Movie::create($request->all())) {
+            return redirect()->route('movies.index')->with('sucesso', 'Filme criado com sucesso!');    
+        }else{
+            return redirect()->route('movies.index')->with('erro', 'Erro não foi possível cadastrar o filme.');
+        }
     }
 
     public function show(string $id)
@@ -41,14 +44,20 @@ class MovieController extends Controller
     public function update(Request $request, string $id)
     {
         $movie = Movie::findOrFail($id);
-        $movie->update($request->all());
-        return redirect()->route('movies.index');
+        if($movie->update($request->all())) {
+            return redirect()->route('movies.index')->with('sucesso', 'Filme atualizado com sucesso!');    
+        }else{
+            return redirect()->route('movies.index')->with('erro', 'Erro não foi possível atualizar o filme.');
+        }
     }
 
     public function destroy(string $id)
     {
         $movie = Movie::findOrFail($id);
-        $movie->delete();
-        return redirect()->back();
+        if($movie->delete()) {
+            return redirect()->back()->with('sucesso', 'Filme deletado com sucesso!');    
+        }else{
+            return redirect()->back()->with('erro', 'Erro não foi possível deletar o filme.');
+        }
     }
 }
