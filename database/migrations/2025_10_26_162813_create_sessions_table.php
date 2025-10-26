@@ -9,11 +9,11 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('sessions', function (Blueprint $table) {
+        Schema::create('sessions_cine', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->id('movie_id');
-            $table->id('rooms_id');
+            $table->foreignId('movie_id')->constrained('movies')->onDelete('cascade');
+            $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
             $table->string('date_time');
         });
     }
