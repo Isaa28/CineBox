@@ -26,17 +26,12 @@ class MovieController extends Controller
         return redirect()->route('movies.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $movie = Movie::findOrFail($id);
+        return view('movies.show', compact('movie'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //
