@@ -12,6 +12,7 @@ return new class extends Migration
         Schema::create('sessions_cine', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
             $table->foreignId('movie_id')->constrained('movies')->onDelete('cascade');
             $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
             $table->string('date_time');
@@ -20,6 +21,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('sessions_cine');
     }
 };
