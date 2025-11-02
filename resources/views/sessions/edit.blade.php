@@ -13,11 +13,11 @@
             @method('PUT')
             <div>
                 <label for="name">Nome da Sessão:</label>
-                <input type="text" name="name" value="{{ $session->name }}">
+                <input type="text" name="name" value="{{ $session->name }}" required>
             </div>
             <div>
                 <label for="movie_id">Filme:</label>
-                <select name="movie_id">
+                <select name="movie_id" required>
                     @foreach($movies as $movie)
                         <option value="{{ $movie->id }}" {{ $movie->id == $session->movie_id ? 'selected' : '' }}>
                         {{ $movie->title }}
@@ -27,7 +27,7 @@
             </div>
             <div>
                 <label for="room_id">Sala:</label>
-                <select name="room_id">
+                <select name="room_id" required>
                     @foreach($rooms as $room)
                         <option value="{{ $room->id }}" {{ $room->id == $session->room_id ? 'selected' : '' }}>
                             {{ $room->name }}
@@ -37,7 +37,7 @@
             </div>
             <div>
                 <label for="date_time">Data e Hora:</label>
-                <input type="text" name="date_time" value="{{ $session->date_time }}">
+                <input type="text" name="date_time" value="{{ $session->date_time }}" required>
             </div>
             <input type="submit" value="Editar">
         </form>

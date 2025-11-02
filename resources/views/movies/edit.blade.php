@@ -13,19 +13,19 @@
             @method('PUT')
             <div>
                 <label for="title">Título:</label>
-                <input type="text" name="title" value="{{ $movie->title }}">
+                <input type="text" name="title" value="{{ $movie->title }}" required>
             </div>
             <div>
                 <label for="genre">Gênero:</label>
-                <input type="text" name="genre" value="{{ $movie->genre }}">
+                <input type="text" name="genre" value="{{ $movie->genre }}" required>
             </div>
             <div>
                 <label for="director">Diretor:</label>
-                <input type="text" name="director" value="{{ $movie->director }}">
+                <input type="text" name="director" value="{{ $movie->director }}" required>
             </div>
             <div>
                 <label for="duration">Duração:</label>
-                <input type="text" name="duration" value="{{ $movie->duration }}">
+                <input type="time" name="duration" value="{{ $movie->duration }}" required>
             </div>
             <input type="submit" value="Editar">
         </form>

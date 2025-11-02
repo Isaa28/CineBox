@@ -12,15 +12,15 @@
             @csrf
             <div>
                 <label for="name">Nome:</label>
-                <input type="text" name="name">
+                <input type="text" name="name" required>
             </div>
             <div>
                 <label for="capacity">Capacidade:</label>
-                <input type="number" name="capacity">
+                <input type="number" name="capacity" required>
             </div>
             <div>
                 <label for="type">Tipo:</label>
-                <input type="text" name="type">
+                <input type="text" name="type" required>
             </div>
             <input type="submit" value="Cadastrar">
         </form>

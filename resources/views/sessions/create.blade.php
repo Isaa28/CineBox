@@ -12,7 +12,7 @@
             @csrf
             <div>
                 <label for="name">Nome da Sessão:</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" id="name" required>
             </div>
             <div>
                 <label for="movie_id">Filme:</label>
@@ -34,7 +34,7 @@
             </div>
             <div>
                 <label for="date_time">Data e Hora:</label>
-                <input type="datetime-local" name="date_time" id="date_time">
+                <input type="datetime-local" name="date_time" id="date_time" required>
             </div>
             <input type="submit" value="Cadastrar">
         </form>
