@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('genre');
             $table->string('director');
-            $table->string('duration');
+            $table->time('duration');
 
         });
     }
