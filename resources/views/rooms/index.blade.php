@@ -29,7 +29,7 @@
             <tr>
                 <td>{{$room->name}}</td>
                 <td><a href="{{route('rooms.edit', $room->id)}}"><i class="fa-solid fa-pen"></i></a></td>
-                <td><form action="{{route('rooms.destroy', $room->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar está sessão?');"> @csrf @method('DELETE') <button type="submit"><i class="fa-regular fa-trash-can"></i></button></form></td>
+                <td><form action="{{route('rooms.destroy', $room->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar está sala? Ao deletar essa sala as sessões relacionadas seram apagadas.');"> @csrf @method('DELETE') <button type="submit"><i class="fa-regular fa-trash-can"></i></button></form></td>
                 <td><a href="{{route('rooms.show', $room->id)}}"><i class="fa-regular fa-eye"></i></a></td>
             </tr>
         @endforeach

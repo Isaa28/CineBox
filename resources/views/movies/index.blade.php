@@ -29,7 +29,7 @@
             <tr>
                 <td>{{$movie->title}}</td>
                 <td><a href="{{route('movies.edit', $movie->id)}}"><i class="fa-solid fa-pen"></i></a></td>
-                <td><form action="{{route('movies.destroy', $movie->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar este filme?');"> @csrf @method('DELETE') <button type="submit"><i class="fa-regular fa-trash-can"></i></button></form></td>
+                <td><form action="{{route('movies.destroy', $movie->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar este filme? Ao deletar esse filme as sessões relacionadas seram apagadas.');"> @csrf @method('DELETE') <button type="submit"><i class="fa-regular fa-trash-can"></i></button></form></td>
                 <td><a href="{{route('movies.show', $movie->id)}}"><i class="fa-regular fa-eye"></i></a></td>
             </tr>
         @endforeach
