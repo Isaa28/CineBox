@@ -23,7 +23,7 @@
     </div>
     <table>
         <tr>
-            <th>Nome</th>
+            <th>Nome da Sessão</th>
         </tr>
         @foreach($sessions as $session)
             <tr>
