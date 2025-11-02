@@ -13,7 +13,7 @@
         <h3>Gênero</h3>
         <p>{{$session->room->name}}</p>
         <h3>Duração</h3>
-        <p>{{$session->date_time}}</p>
+        <p>{{ \Carbon\Carbon::parse($session->date_time)->format('d/m/Y H:i') }}</p>
         <a href="{{ route('sessions.index') }}">Voltar</a>
     </div>
 </body>
