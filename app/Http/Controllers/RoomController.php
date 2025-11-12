@@ -22,6 +22,13 @@ class RoomController extends Controller
 
     public function store(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required|string|max:100|unique:rooms,name',
+            'capacity' => 'required|integer|min:1|max:250',
+            'type' => 'required|string|max:50',
+        ]);
+
         if(Room::create($request->all())) {
             return redirect()->route('rooms.index')->with('sucesso', 'Sala criada com sucesso!');    
         }else{
@@ -43,6 +50,13 @@ class RoomController extends Controller
 
     public function update(Request $request, string $id)
     {
+
+        $request->validate([
+            'name' => 'required|string|max:100|unique:rooms,name',
+            'capacity' => 'required|integer|min:1|max:250',
+            'type' => 'required|string|max:50',
+        ]);
+
         $room = Room::findOrFail($id);
         if($room->update($request->all())) {
             return redirect()->route('rooms.index')->with('sucesso', 'Sala atualizada com sucesso!');    

@@ -22,6 +22,15 @@ class MovieController extends Controller
 
     public function store(Request $request)
     {
+
+        $request->validate([
+        'title' => 'required|string|max:255',
+        'genre' => 'required|string|max:255',
+        'director' => 'required|string|max:255',
+        'duration' => 'required',
+        ]);
+
+
         if(Movie::create($request->all())) {
             return redirect()->route('movies.index')->with('sucesso', 'Filme criado com sucesso!');    
         }else{
@@ -43,6 +52,15 @@ class MovieController extends Controller
 
     public function update(Request $request, string $id)
     {
+
+        $request->validate([
+        'title' => 'required|string|max:255',
+        'genre' => 'required|string|max:255',
+        'director' => 'required|string|max:255',
+        'duration' => 'required',
+        ]);
+
+
         $movie = Movie::findOrFail($id);
         if($movie->update($request->all())) {
             return redirect()->route('movies.index')->with('sucesso', 'Filme atualizado com sucesso!');    

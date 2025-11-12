@@ -26,6 +26,13 @@ class sessionController extends Controller
 
     public function store(Request $request)
     {
+
+        $request->validate([
+            'movie_id' => 'required|exists:movies,id',
+            'room_id' => 'required|exists:rooms,id',
+            'date_time' => 'required|date',
+        ]);
+
         if(Session::create($request->all())) {
             return redirect()->route('sessions.index')->with('sucesso', 'Sessão criada com sucesso!');    
         }else{
@@ -49,6 +56,13 @@ class sessionController extends Controller
 
     public function update(Request $request, string $id)
     {
+
+        $request->validate([
+            'movie_id' => 'required|exists:movies,id',
+            'room_id' => 'required|exists:rooms,id',
+            'date_time' => 'required|date',
+        ]);
+
         $session = Session::findOrFail($id);
         if($session->update($request->all())) {
             return redirect()->route('sessions.index')->with('sucesso', 'Sessão atualizada com sucesso!');    

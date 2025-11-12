@@ -24,6 +24,14 @@ class TicketController extends Controller
 
     public function store(Request $request)
     {
+
+        $request->validate([
+            'session_id' => 'required|exists:sessions,id',
+            'seat_number' => 'required|string|max:10',
+            'price' => 'required|numeric|min:0',
+            'client_name' => 'required|string|min:3|max:255',
+        ]);
+
         if(Ticket::create($request->all())) {
             return redirect()->route('tickets.index')->with('sucesso', 'Ingresso criado com sucesso!');    
         }else{
@@ -46,6 +54,14 @@ class TicketController extends Controller
 
     public function update(Request $request, string $id)
     {
+
+        $request->validate([
+            'session_id' => 'required|exists:sessions,id',
+            'seat_number' => 'required|string|max:10',
+            'price' => 'required|numeric|min:0',
+            'client_name' => 'required|string|min:3|max:255',
+        ]);
+
         $ticket = Ticket::findOrFail($id);
         if($ticket->update($request->all())) {
             return redirect()->route('tickets.index')->with('sucesso', 'Ingresso atualizado com sucesso!');    
