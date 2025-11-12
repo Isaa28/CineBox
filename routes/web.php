@@ -20,12 +20,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('movies', MovieController::class);
+    Route::resource('rooms', RoomController::class);
+    Route::resource('sessions', SessionController::class);
+    Route::resource('tickets', TicketController::class);
+    Route::resource('snacks', SnackController::class);
 });
-
-Route::resource('movies', MovieController::class);
-Route::resource('rooms', RoomController::class);
-Route::resource('sessions', SessionController::class);
-Route::resource('tickets', TicketController::class);
-Route::resource('snacks', SnackController::class);
 
 require __DIR__.'/auth.php';
