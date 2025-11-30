@@ -5,28 +5,36 @@
 
 @section('content')
 <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-2xl border border-gray-200">
-    <form action="{{ route('snacks.store') }}" method="post" class="space-y-6">
+    <form action="{{ route('snacks.store') }}" method="POST" class="space-y-6">
         @csrf
-        
+
         <div>
-            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome:</label>
-            <input type="text" name="name" id="name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 ease-in-out" placeholder="Ex: Pipoca Grande Doce" required>
+            <label for="name">Nome:</label>
+            <input type="text" name="name" value="{{ old('name') }}" class="w-full p-3 border @error('name') border-red-500 @else border-gray-300 @enderror rounded-lg" placeholder="Ex: Pipoca Grande Doce" required>
+            @error('name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
+
         <div>
-            <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Tipo:</label>
-            <input type="text" name="type" id="type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 ease-in-out" placeholder="Ex: Salgado, Doce, Bebida" required>
+            <label for="type">Tipo:</label>
+            <input type="text" name="type" value="{{ old('type') }}" class="w-full p-3 border @error('type') border-red-500 @else border-gray-300 @enderror rounded-lg" placeholder="Ex: Salgado, Doce, Bebida" required>
+            @error('type') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
+
         <div>
-            <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Preço (R$):</label>
-            <input type="number" name="price" id="price" step="0.01"class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 ease-in-out" placeholder="Ex: 15.50" required>
+            <label for="price">Preço (R$):</label>
+            <input type="number" name="price" value="{{ old('price') }}" step="0.01" class="w-full p-3 border @error('price') border-red-500 @else border-gray-300 @enderror rounded-lg" placeholder="Ex: 15.50" required>
+            @error('price') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
+
         <div>
-            <label for="stock_quantity" class="block text-sm font-medium text-gray-700 mb-1">Estoque:</label>
-            <input type="number" name="stock_quantity" id="stock_quantity" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 ease-in-out" placeholder="Ex: 100" required>
+            <label for="stock_quantity">Estoque:</label>
+            <input type="number" name="stock_quantity" value="{{ old('stock_quantity') }}" class="w-full p-3 border @error('stock_quantity') border-red-500 @else border-gray-300 @enderror rounded-lg" placeholder="Ex: 100" required>
+            @error('stock_quantity') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
+
         <div class="flex items-center justify-end mt-4">
-            <a href="javascript:history.back()" class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 transition duration-150 ease-in-out mr-4">Voltar</a>
-            <button type="submit" class="bg-red-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-150 ease-in-out">Cadastrar</button>
+            <a href="javascript:history.back()" class="px-4 py-2 bg-gray-300 rounded-lg mr-4">Voltar</a>
+            <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Cadastrar</button>
         </div>
     </form>
 </div>

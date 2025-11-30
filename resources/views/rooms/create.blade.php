@@ -5,27 +5,30 @@
 
 @section('content')
 <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-2xl border border-gray-200">
-    <form action="{{ route('rooms.store') }}" method="post" class="space-y-6">
+    <form action="{{ route('rooms.store') }}" method="POST" class="space-y-6">
         @csrf
-        
+
         <div>
-            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome da Sala:</label>
-            <input type="text" name="name" id="name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 ease-in-out" placeholder="Ex: Sala 1 VIP" required>
+            <label for="name">Nome da Sala:</label>
+            <input type="text" name="name" value="{{ old('name') }}" class="w-full p-3 border @error('name') border-red-500 @else border-gray-300 @enderror rounded-lg" placeholder="Ex: Sala 1 VIP" required>
+            @error('name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
-        
+
         <div>
-            <label for="capacity" class="block text-sm font-medium text-gray-700 mb-1">Capacidade:</label>
-            <input type="number" name="capacity" id="capacity" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 ease-in-out" placeholder="Ex: 50" required>
+            <label for="capacity">Capacidade:</label>
+            <input type="number" name="capacity" value="{{ old('capacity') }}" class="w-full p-3 border @error('capacity') border-red-500 @else border-gray-300 @enderror rounded-lg" placeholder="Ex: 50" required>
+            @error('capacity') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
-        
+
         <div>
-            <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Tipo:</label>
-            <input type="text" name="type" id="type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 ease-in-out" placeholder="Ex: 2D, 3D, IMAX" required>
+            <label for="type">Tipo:</label>
+            <input type="text" name="type" value="{{ old('type') }}" class="w-full p-3 border @error('type') border-red-500 @else border-gray-300 @enderror rounded-lg" placeholder="Ex: 2D, 3D, IMAX" required>
+            @error('type') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a href="javascript:history.back()" class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 transition duration-150 ease-in-out mr-4">Voltar</a>  
-            <button type="submit" class="bg-red-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-150 ease-in-out">Cadastrar</button>
+            <a href="javascript:history.back()" class="px-4 py-2 bg-gray-300 rounded-lg mr-4">Voltar</a>
+            <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Cadastrar</button>
         </div>
     </form>
 </div>
