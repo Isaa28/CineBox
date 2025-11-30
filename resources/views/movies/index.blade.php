@@ -1,38 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/2e3161fd5b.js" crossorigin="anonymous"></script>
-    <title>CineBox-Filmes</title>
-</head>
-<body>
-    <div>
-        <h1>Filmes</h1>
-        <a href="{{route('movies.create')}}">Cadastrar filme</a>
+@extends('layouts.cinema')
 
+@section('title', 'Filmes')
+@section('header', 'Lista de Filmes')
+
+@section('content')
+<div class="max-w-7xl mx-auto space-y-6">
+
+    <div class="flex justify-between items-center mb-6 p-4 bg-white rounded-lg shadow-md border border-gray-200">
+        <a href="{{ route('movies.create') }}" class="bg-red-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-150 ease-in-out">Cadastrar Novo Filme</a>
+        
         @if (session()->has('sucesso'))
-            <p>{{ session()->get('sucesso')}}</p>
+            <p class="text-green-600 font-medium">{{ session()->get('sucesso')}}</p>
         @elseif (session()->has('erro'))
-            <p>{{ session()->get('erro')}}</p>
-        @else
-            <p> </p>
+            <p class="text-red-600 font-medium">{{ session()->get('erro')}}</p>
         @endif
-
-        <hr>
     </div>
-    <table>
-        <tr>
-            <th>Título</th>
-        </tr>
-        @foreach($movies as $movie)
-            <tr>
-                <td>{{$movie->title}}</td>
-                <td><a href="{{route('movies.edit', $movie->id)}}"><i class="fa-solid fa-pen"></i></a></td>
-                <td><form action="{{route('movies.destroy', $movie->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar este filme? Ao deletar esse filme as sessões relacionadas seram apagadas.');"> @csrf @method('DELETE') <button type="submit"><i class="fa-regular fa-trash-can"></i></button></form></td>
-                <td><a href="{{route('movies.show', $movie->id)}}"><i class="fa-regular fa-eye"></i></a></td>
-            </tr>
-        @endforeach
-    </table>
-</body>
-</html>
+
+    <div class="bg-white overflow-hidden shadow-2xl rounded-xl border border-gray-200">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Título</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach($movies as $movie)
+                        <tr class="hover:bg-gray-50 transition duration-100 ease-in-out">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$movie->title}}</td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium w-1/12">
+                                <a href="{{route('movies.edit', $movie->id)}}" class="text-blue-600 hover:text-blue-900 mx-1 p-2 rounded-full hover:bg-blue-50"><i class="fa-solid fa-pen"></i></a>
+                            </td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium w-1/12">
+                                <form action="{{route('movies.destroy', $movie->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar este filme? Ao deletar esse filme as sessões relacionadas seram apagadas.');" class="inline-block"> 
+                                    @csrf 
+                                    @method('DELETE') 
+                                    <button type="submit" class="text-red-600 hover:text-red-900 mx-1 p-2 rounded-full hover:bg-red-50">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium w-1/12">
+                                <a href="{{route('movies.show', $movie->id)}}" class="text-green-600 hover:text-green-900 mx-1 p-2 rounded-full hover:bg-green-50"><i class="fa-regular fa-eye"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endsection
