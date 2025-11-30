@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SnackRequest;
 use Illuminate\Http\Request;
 use App\Models\Snack;
 
@@ -19,7 +20,7 @@ class SnackController extends Controller
         return view('snacks.create');
     }
 
-    public function store(Request $request)
+    public function store(SnackRequest $request)
     {
         if(Snack::create($request->all())) {
             return redirect()->route('snacks.index')->with('sucesso', 'Lanche criado com sucesso!');    
@@ -40,7 +41,7 @@ class SnackController extends Controller
         return view('snacks.edit', compact('snack'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(SnackRequest $request, string $id)
     {
         $snack = Snack::findOrFail($id);
         if($snack->update($request->all())) {

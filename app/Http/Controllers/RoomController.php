@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RoomRequest;
 use Illuminate\Http\Request;
 use App\Models\Room;
 
@@ -20,7 +21,7 @@ class RoomController extends Controller
         return view('rooms.create');
     }
 
-    public function store(Request $request)
+    public function store(RoomRequest $request)
     {
         if(Room::create($request->all())) {
             return redirect()->route('rooms.index')->with('sucesso', 'Sala criada com sucesso!');    
@@ -41,7 +42,7 @@ class RoomController extends Controller
         return view('rooms.edit', compact('room'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(RoomRequest $request, string $id)
     {
         $room = Room::findOrFail($id);
         if($room->update($request->all())) {

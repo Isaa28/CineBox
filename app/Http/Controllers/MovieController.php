@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MovieRequest;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 
@@ -20,7 +21,7 @@ class MovieController extends Controller
         return view('movies.create');
     }
 
-    public function store(Request $request)
+    public function store(MovieRequest $request)
     {
         if(Movie::create($request->all())) {
             return redirect()->route('movies.index')->with('sucesso', 'Filme criado com sucesso!');    
@@ -41,7 +42,7 @@ class MovieController extends Controller
         return view('movies.edit', compact('movie'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(MovieRequest $request, string $id)
     {
         $movie = Movie::findOrFail($id);
         if($movie->update($request->all())) {

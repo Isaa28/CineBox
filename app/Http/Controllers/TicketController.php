@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SnackRequest;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
-use App\Models\Session;
+use App\Models\MovieSession;
 
 class TicketController extends Controller
 {
@@ -18,11 +19,11 @@ class TicketController extends Controller
 
     public function create()
     {
-        $sessions = Session::all();
+        $sessions = MovieSession::all();
         return view('tickets.create', compact('sessions'));
     }
 
-    public function store(Request $request)
+    public function store(SnackRequest $request)
     {
         if(Ticket::create($request->all())) {
             return redirect()->route('tickets.index')->with('sucesso', 'Ingresso criado com sucesso!');    
@@ -40,11 +41,11 @@ class TicketController extends Controller
     public function edit(string $id)
     {
         $ticket = Ticket::findOrFail($id);
-        $sessions = Session::all();
+        $sessions = MovieSession::all();
         return view('tickets.edit', compact('ticket', 'sessions'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(SnackRequest $request, string $id)
     {
         $ticket = Ticket::findOrFail($id);
         if($ticket->update($request->all())) {

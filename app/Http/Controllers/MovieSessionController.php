@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MovieSessionRequest;
 use Illuminate\Http\Request;
 use App\Models\MovieSession;
 use App\Models\Movie;
@@ -24,7 +25,7 @@ class MovieSessionController extends Controller
         return view('Sessions.create', compact('movies', 'rooms'));
     }
 
-    public function store(Request $request)
+    public function store(MovieSessionRequest $request)
     {
         if(MovieSession::create($request->all())) {
             return redirect()->route('Sessions.index')->with('sucesso', 'Sessão criada com sucesso!');    
@@ -47,7 +48,7 @@ class MovieSessionController extends Controller
         return view('Sessions.edit', compact('session', 'movies', 'rooms'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(MovieSessionRequest $request, string $id)
     {
         $MovieSession = MovieSession::findOrFail($id);
         if($MovieSession->update($request->all())) {
