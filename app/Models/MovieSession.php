@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Session extends Model
+class MovieSession extends Model
 {
     protected $table = 'sessions_cine';
     protected $fillable = ['name' ,'movie_id', 'room_id', 'date_time'];
