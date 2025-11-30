@@ -21,13 +21,6 @@ class SnackController extends Controller
 
     public function store(Request $request)
     {
-
-        $request->validate([
-            'name' => 'required|string|max:100|unique:snacks,name',
-            'price' => 'required|numeric|min:0',
-            'type' => 'required|string|max:50',
-        ]);
-
         if(Snack::create($request->all())) {
             return redirect()->route('snacks.index')->with('sucesso', 'Lanche criado com sucesso!');    
         }else{
@@ -49,13 +42,6 @@ class SnackController extends Controller
 
     public function update(Request $request, string $id)
     {
-
-        $request->validate([
-            'name' => 'required|string|max:100|unique:snacks,name',
-            'price' => 'required|numeric|min:0',
-            'type' => 'required|string|max:50',
-        ]);
-
         $snack = Snack::findOrFail($id);
         if($snack->update($request->all())) {
             return redirect()->route('snacks.index')->with('sucesso', 'Lanche atualizado com sucesso!');    
