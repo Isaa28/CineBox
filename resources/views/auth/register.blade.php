@@ -63,10 +63,6 @@
                 <p class="text-sm text-gray-600">Já é registrado?<a href="{{ route('login') }}" class="font-medium text-rose-600 hover:text-rose-500">Faça Login</a></p>
             </div>
         </div>
-        
-        <div class="mt-6 text-center">
-            <a href="{{ url('/') }}" class="text-sm text-gray-600 hover:text-gray-800 transition duration-150">&larr; Voltar para a Home</a>
-        </div>
     </div>
 </body>
 </html>
