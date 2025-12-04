@@ -6,7 +6,7 @@
 
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto text-indigo-500" />
+                        <img src="{{ asset('assets/logo3.png') }}" class="block h-20 w-auto" alt="CineBox Logo">
                     </a>
                 </div>
 
