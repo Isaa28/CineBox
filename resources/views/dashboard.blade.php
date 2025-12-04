@@ -1,8 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-red-700 leading-tight">
-            {{ __('Painel de Gerenciamento do Cinema') }}
-        </h2>
+        <h2 class="font-semibold text-2xl text-red-700 leading-tight">Painel de Gerenciamento do Cinema</h2>
     </x-slot>
 
     <div class="py-12">
@@ -55,9 +53,7 @@
                 </div>
 
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                    <p class="text-gray-700">
-                        Bem-vindo(a) ao painel de gerenciamento do cinema. Use os links acima para navegar e gerenciar seus filmes, sessões, lanches e ingressos.
-                    </p>
+                    <p class="text-gray-700">Bem-vindo(a) ao painel de gerenciamento do cinema. Use os links acima para navegar e gerenciar seus filmes, sessões, lanches e ingressos.</p>
                 </div>
                 
             </div>
