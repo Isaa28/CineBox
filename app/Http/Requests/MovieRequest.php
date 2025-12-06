@@ -27,7 +27,7 @@ class MovieRequest extends FormRequest
             'title' => 'required|string|min:2|max:255',
             'genre' => 'required|string|min:3|max:100',
             'director' => 'required|string|min:3|max:100',
-            'duration' => 'required|date_format:H:i',
+            'duration' => 'required|date_format:H:i|before_or_equal:04:00',
         ];
     }
 }
