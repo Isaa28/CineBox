@@ -30,7 +30,7 @@ class SnackRequest extends FormRequest
                 'max:100',
                 Rule::unique('snacks')->ignore($this->snack),
             ],
-            'price' => 'required|numeric|min:0|max:1000',
+            'price' => 'required|numeric|min:0|max:100',
             'type' => 'required|string|min:3|max:50',
         ];
     }
