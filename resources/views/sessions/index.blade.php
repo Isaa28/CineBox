@@ -27,16 +27,16 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach($MovieSessions as $MovieSession)
                         <tr class="hover:bg-gray-50 transition duration-100 ease-in-out">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$session->name}}</td>
-                            <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium w-1/12"><a href="{{route('sessions.edit', $session->id)}}" class="text-blue-600 hover:text-blue-900 mx-1 p-2 rounded-full hover:bg-blue-50"><i class="fa-solid fa-pen"></i></a></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$MovieSession->name}}</td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium w-1/12"><a href="{{route('sessions.edit', $MovieSession->id)}}" class="text-blue-600 hover:text-blue-900 mx-1 p-2 rounded-full hover:bg-blue-50"><i class="fa-solid fa-pen"></i></a></td>
                             <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium w-1/12">
-                                <form action="{{route('sessions.destroy', $session->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar está sessão?');" class="inline-block"> 
+                                <form action="{{route('sessions.destroy', $MovieSession->id)}}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar está sessão?');" class="inline-block"> 
                                     @csrf 
                                     @method('DELETE') 
                                     <button type="submit" class="text-red-600 hover:text-red-900 mx-1 p-2 rounded-full hover:bg-red-50"><i class="fa-regular fa-trash-can"></i></button>
                                 </form>
                             </td>
-                            <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium w-1/12"><a href="{{route('sessions.show', $session->id)}}" class="text-green-600 hover:text-green-900 mx-1 p-2 rounded-full hover:bg-green-50"><i class="fa-regular fa-eye"></i></a></td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center text-sm font-medium w-1/12"><a href="{{route('sessions.show', $MovieSession->id)}}" class="text-green-600 hover:text-green-900 mx-1 p-2 rounded-full hover:bg-green-50"><i class="fa-regular fa-eye"></i></a></td>
                         </tr>
                     @endforeach
                 </tbody>

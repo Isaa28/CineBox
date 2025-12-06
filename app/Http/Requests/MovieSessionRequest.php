@@ -22,13 +22,22 @@ class MovieSessionRequest extends FormRequest
      */
     public function rules(): array
     {
+        $routeParam = $this->route('session') ?? $this->route('MovieSession') ?? $this->route('id');
+        $sessionId = null;
+
+        if (is_object($routeParam) && property_exists($routeParam, 'id')) {
+            $sessionId = $routeParam->id;
+        } elseif (is_numeric($routeParam) || is_string($routeParam)) {
+            $sessionId = $routeParam;
+        }
+
         return [
             'name' => [
                 'required',
                 'string',
                 'min:3',
                 'max:100',
-                Rule::unique('sessions')->ignore($this->session),
+                Rule::unique('sessions_cine')->ignore($sessionId),
             ],
             'movie_id' => 'required|exists:movies,id',
             'room_id' => 'required|exists:rooms,id',

@@ -15,29 +15,29 @@ class MovieSessionController extends Controller
     public function index()
     {
         $MovieSessions = MovieSession::with(['movie', 'room'])->get();
-        return view('Sessions.index', compact('MovieSessions'));
+        return view('sessions.index', compact('MovieSessions'));
     }
 
     public function create()
     {
         $movies = Movie::all();
         $rooms = Room::all();
-        return view('Sessions.create', compact('movies', 'rooms'));
+        return view('sessions.create', compact('movies', 'rooms'));
     }
 
     public function store(MovieSessionRequest $request)
     {
         if(MovieSession::create($request->all())) {
-            return redirect()->route('Sessions.index')->with('sucesso', 'Sessão criada com sucesso!');    
+            return redirect()->route('sessions.index')->with('sucesso', 'Sessão criada com sucesso!');    
         }else{
-            return redirect()->route('Sessions.index')->with('erro', 'Erro não foi possível cadastrar a sessão.');
+            return redirect()->route('sessions.index')->with('erro', 'Erro não foi possível cadastrar a sessão.');
         }
     }
 
     public function show(string $id)
     {
         $MovieSession = MovieSession::findOrFail($id);
-        return view('Sessions.show', compact('session'));
+        return view('sessions.show', compact('MovieSession'));
     }
 
     public function edit(string $id)
@@ -45,16 +45,16 @@ class MovieSessionController extends Controller
         $MovieSession = MovieSession::findOrFail($id);
         $movies = Movie::all();
         $rooms = Room::all();
-        return view('Sessions.edit', compact('session', 'movies', 'rooms'));
+        return view('sessions.edit', compact('MovieSession', 'movies', 'rooms'));
     }
 
     public function update(MovieSessionRequest $request, string $id)
     {
         $MovieSession = MovieSession::findOrFail($id);
         if($MovieSession->update($request->all())) {
-            return redirect()->route('Sessions.index')->with('sucesso', 'Sessão atualizada com sucesso!');    
+            return redirect()->route('sessions.index')->with('sucesso', 'Sessão atualizada com sucesso!');    
         }else{
-            return redirect()->route('Sessions.index')->with('erro', 'Erro não foi possível atualizar a sessão.');
+            return redirect()->route('sessions.index')->with('erro', 'Erro não foi possível atualizar a sessão.');
         }
     }
 
