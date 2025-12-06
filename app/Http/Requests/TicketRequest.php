@@ -23,18 +23,16 @@ class TicketRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'session_id' => 'required|exists:sessions,id',
+            'session_id' => 'required|exists:sessions_cine,id',
             'seat_number' => [
                 'required',
-                'string',
+                'numeric',     
                 'min:1',
-                'max:10',
-                Rule::unique('tickets')->where(function ($query) {
-                    return $query->where('session_id', $this->session_id);
-                })->ignore($this->ticket),
+                'max:250',
+                Rule::unique('tickets')->where(fn($q) => $q->where('session_id', $this->session_id))->ignore($this->ticket),
             ],
-            'price' => 'required|numeric|min:0|max:500',
-            'client_name' => 'required|string|min:3|max:255',
+            'customer_name' => 'required|string|min:3|max:255',
+            'purchase_date' => 'required|date',
         ];
     }
 }
