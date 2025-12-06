@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SnackRequest;
+use App\Http\Requests\TicketRequest;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Models\MovieSession;
@@ -23,7 +23,7 @@ class TicketController extends Controller
         return view('tickets.create', compact('sessions'));
     }
 
-    public function store(SnackRequest $request)
+    public function store(TicketRequest $request)
     {
         if(Ticket::create($request->all())) {
             return redirect()->route('tickets.index')->with('sucesso', 'Ingresso criado com sucesso!');    
@@ -45,7 +45,7 @@ class TicketController extends Controller
         return view('tickets.edit', compact('ticket', 'sessions'));
     }
 
-    public function update(SnackRequest $request, string $id)
+    public function update(TicketRequest $request, string $id)
     {
         $ticket = Ticket::findOrFail($id);
         if($ticket->update($request->all())) {
