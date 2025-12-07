@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     protected $table = 'tickets';
-    protected $fillable = ['session_id' ,'seat_number', 'customer_name', 'purchase_date'];
+    protected $fillable = ['session_id' ,'seat_number', 'customer_name', 'purchase_date', 'user_id'];
 
        public function session()
     {

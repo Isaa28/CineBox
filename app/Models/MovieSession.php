@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MovieSession extends Model
 {
     protected $table = 'sessions_cine';
-    protected $fillable = ['name' ,'movie_id', 'room_id', 'date_time'];
+    protected $fillable = ['name' ,'movie_id', 'room_id', 'date_time', 'user_id'];
 
     public function movie()
     {

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Snack extends Model
 {
-    protected $fillable = ['name' ,'type', 'price', 'stock_quantity'];
+    protected $fillable = ['name' ,'type', 'price', 'stock_quantity','user_id'];
 }
