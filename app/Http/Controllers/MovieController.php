@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\MovieRequest;
-use Illuminate\Http\Request;
 use App\Models\Movie;
+use Illuminate\Support\Facades\Auth;
 
 class MovieController extends Controller
 {
-   
     public function index()
     {
-        $movies = Movie::all();  
+        $movies = Movie::where('user_id', Auth::id())->get();  
         return view('movies.index', compact('movies'));
     }
 
@@ -23,41 +21,48 @@ class MovieController extends Controller
 
     public function store(MovieRequest $request)
     {
-        if(Movie::create($request->all())) {
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+
+        if(Movie::create($data)) {
             return redirect()->route('movies.index')->with('sucesso', 'Filme criado com sucesso!');    
-        }else{
+        } else {
             return redirect()->route('movies.index')->with('erro', 'Erro não foi possível cadastrar o filme.');
         }
     }
 
     public function show(string $id)
     {
-        $movie = Movie::findOrFail($id);
+        $movie = Movie::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+
         return view('movies.show', compact('movie'));
     }
 
     public function edit(string $id)
     {
-        $movie = Movie::findOrFail($id);
+        $movie = Movie::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+
         return view('movies.edit', compact('movie'));
     }
 
     public function update(MovieRequest $request, string $id)
     {
-        $movie = Movie::findOrFail($id);
+        $movie = Movie::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+
         if($movie->update($request->all())) {
             return redirect()->route('movies.index')->with('sucesso', 'Filme atualizado com sucesso!');    
-        }else{
+        } else {
             return redirect()->route('movies.index')->with('erro', 'Erro não foi possível atualizar o filme.');
         }
     }
 
     public function destroy(string $id)
     {
-        $movie = Movie::findOrFail($id);
+        $movie = Movie::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+
         if($movie->delete()) {
             return redirect()->back()->with('sucesso', 'Filme deletado com sucesso!');    
-        }else{
+        } else {
             return redirect()->back()->with('erro', 'Erro não foi possível deletar o filme.');
         }
     }

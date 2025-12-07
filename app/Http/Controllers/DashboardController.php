@@ -6,7 +6,7 @@ use App\Models\Movie;
 use App\Models\Room;
 use App\Models\MovieSession;
 use App\Models\Snack;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -16,23 +16,18 @@ class DashboardController extends Controller
         $totalRooms = 0;
         $totalSnacks = 0;
         $todaySessions = 0;
-        
-        try {
-            set_time_limit(300); 
 
-            $totalMovies = Movie::count();
-            $totalRooms = Room::count();
-            $totalSnacks = Snack::count();
-            $todaySessions = MovieSession::whereDate('date_time', today())->count();
+        try {
+            $userId = Auth::id();
+
+            $totalMovies = Movie::where('user_id', $userId)->count();
+            $totalRooms = Room::where('user_id', $userId)->count();
+            $totalSnacks = Snack::where('user_id', $userId)->count();
+            $todaySessions = MovieSession::where('user_id', $userId)->whereDate('date_time', today())->count();
         } catch (\Exception $e) {
             
         }
-        
-        return view('dashboard', [
-            'totalMovies' => $totalMovies,
-            'totalRooms' => $totalRooms,
-            'totalSnacks' => $totalSnacks,
-            'todaySessions' => $todaySessions,
-        ]);
+
+        return view('dashboard', compact('totalMovies','totalRooms','totalSnacks','todaySessions'));
     }
 }
