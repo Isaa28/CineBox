@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('genre');
             $table->string('director');
             $table->time('duration');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
 
         });
     }

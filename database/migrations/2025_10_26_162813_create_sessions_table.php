@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('movie_id')->constrained('movies')->onDelete('cascade');
             $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
             $table->string('date_time');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            
         });
     }
 

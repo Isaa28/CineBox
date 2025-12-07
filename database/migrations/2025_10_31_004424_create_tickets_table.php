@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('seat_number');
             $table->string('customer_name');
             $table->dateTime('purchase_date');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
         });
     }
 
